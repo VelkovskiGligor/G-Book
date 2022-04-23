@@ -1,0 +1,87 @@
+<th:block xmlns:th="http://www.thymeleaf.org">
+<section class="jumbotron text-center">
+    <div class="container">
+        <h1 class="jumbotron-heading">G-Book SHOP</h1>
+        <h3 class="jumbotron-heading">All products</h3>
+    </div>
+</section>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-5">
+            <h3 class="mb-3">Add new Author</h3>
+            <form action="/authors/add" method="POST" enctype="multipart/form-data">
+                <div class="form-group">
+                    <label for="name">Name</label>
+                    <input type="text"
+                           class="form-control"
+                           id="name"
+                           name="name"
+
+                           required
+                           placeholder="Enter author name">
+                </div>
+                <div class="form-group">
+                    <label for="surname">Surname</label>
+                    <input type="text"
+                           class="form-control"
+                           id="surname"
+                           name="surname"
+
+                           placeholder="Enter author surname">
+                </div>
+                <div class="form-group">
+                    <label for="country">Country</label>
+                    <input type="text"
+                           class="form-control"
+                           id="country"
+                           name="from"
+
+                           required
+                           placeholder="Enter authors country ">
+                </div>
+                <div class="form-group">
+                    <label for="fileImage">Photo</label>
+                    <input type="file"
+                           class="form-control"
+                           id="fileImage"
+                           name="photo"
+                           accept="image/png, image/jpeg"/>
+                </div>
+                <div class="form-group">
+                    <img id="thumbnail" alt="Author Photo Preview">
+                </div>
+
+
+                <div class="form-group">
+                    <label for="description">About author</label>
+                    <div class="md-form">
+                        <i class="fas fa-pencil-alt prefix"></i>
+                        <textarea id="description" name="description" class="md-textarea form-control" rows="3"></textarea>
+                    </div>
+
+                </div>
+                <button type="submit" class="btn btn-primary" >Submit</button>
+                <a type="button" class="btn btn-primary" href="/books/add-form">Back</a>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#fileImage").change(function () {
+            showImageThumbnail(this)
+        });
+    })
+    function showImageThumbnail(fileInput) {
+        file= fileInput.files[0];
+        reader = new FileReader()
+        reader.onload= function (e) {
+            $('#thumbnail').attr('src',e.target.result);
+        };
+
+        reader.readAsDataURL(file);
+    }
+</script>
+</th:block>

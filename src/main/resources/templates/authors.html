@@ -1,0 +1,52 @@
+<th:block xmlns:th="http://www.thymeleaf.org">
+<section class="jumbotron text-center">
+    <div class="container">
+        <h1 class="jumbotron-heading">G-Book SHOP</h1>
+        <h3 class="jumbotron-heading">Authors</h3>
+    </div>
+</section>
+
+<div class="container-fluid mb-4" >
+
+    <div class="container mt-5 mb-5" th:if="${authors.size()>0}">
+        <div class="d-flex justify-content-center row" th:each="author : ${authors}">
+            <div class="col-md-10">
+                <div class="row p-2 bg-white border rounded">
+                    <div class="col-md-3 mt-1"><img class="img-fluid img-responsive rounded product-image"  th:src="@{${'/img/authors' + author.id + '/' + author.authorPhoto}}" style="    vertical-align: middle;
+    border-style: none;    max-width: 100%;
+    height: auto;"></div>
+                    <div class="col-md-6 mt-1">
+                        <h4 th:text="${author.fullName()}"></h4>
+                        <div class="d-flex flex-row">
+                            <div class="ratings mr-2"><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i></div>
+                        </div>
+                        <div class="mt-1 mb-1 spec-1"><strong>Country: </strong> <span  th:text="${author.getCountry()}"></span></div>
+
+                        <h5>About author:</h5>
+                        <p class="text-justify text-truncate para mb-0" th:text="${author.getAboutActor()}"><br><br></p>
+                    </div>
+                    <div class="align-items-center align-content-center col-md-3 border-left mt-auto mb-2">
+
+
+                        <div class="d-flex flex-column  ">
+                            <a class="btn btn-primary btn-sm" type="button" th:href="@{'/authors/details/{id}' (id=${author.getId()})}">Details</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+</div>
+</div>
+<div class="col mb-3">
+    <div class="row">
+        <div class="col-sm-12 col-md-12">
+            <a href="/authors/add-form" class="btn btn-block btn-dark">Add new author</a>
+        </div>
+    </div>
+</div>
+</div>
+</div>
+</th:block>

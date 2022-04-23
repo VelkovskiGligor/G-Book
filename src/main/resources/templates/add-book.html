@@ -1,0 +1,135 @@
+<th:block xmlns:th="http://www.thymeleaf.org">
+    <section class="jumbotron text-center">
+        <div class="container">
+            <h1 class="jumbotron-heading">G-Book SHOP</h1>
+            <h3 class="jumbotron-heading">All products</h3>
+        </div>
+    </section>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-5">
+                <form action="/books/add" method="POST" enctype="multipart/form-data">
+                    <div class="form-group">
+                        <label for="name">Book name</label>
+                        <input type="text"
+                               class="form-control"
+                               id="name"
+                               name="name"
+                               th:value="(${book} != null ? ${book.getName()}: '')"
+                               required
+                               placeholder="Enter book name">
+                    </div>
+                    <div class="form-group">
+                        <label for="price">Price</label>
+                        <input type="text"
+                               class="form-control"
+                               id="price"
+                               name="price"
+                               th:value="(${book} !=null ? ${book.getPrice()} :'' )"
+                               placeholder="Price">
+                    </div>
+                    <div class="form-group">
+                        <label for="quantity">Quantity</label>
+                        <input type="text"
+                               class="form-control"
+                               id="quantity"
+                               name="quantity"
+                               th:value="(${book} != null ? ${book.getQuantity()} : '')"
+                               placeholder="Quantity">
+                    </div>
+                    <div class="form-group">
+                        <label for="price">Language</label>
+                        <input type="text"
+                               class="form-control"
+                               id="language"
+                               name="language"
+                               th:value="(${book}!=null ? ${book.getLanguage()} : '')"
+                               placeholder="Language">
+                    </div>
+                    <div class="form-group">
+                        <label>Category</label>
+                        <select name="category" class="form-control">
+                            <option th:if="${book} != null"
+                                    th:selected="${cat.getCategoryName() != null && book.getCategory().getId() == cat.getId()}"
+                                    th:each="cat : ${categories}"
+                                    th:value="${cat.getId()}"
+                                    th:text="${cat.getCategoryName()}">
+                            </option>
+                            <option th:if="${book} == null"
+                                    th:each="cat : ${categories}"
+                                    th:value="${cat.getId()}"
+                                    th:text="${cat.getCategoryName()}">
+                            </option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Author</label>
+                        <select name="author" class="form-control">
+                            <option th:if="${book} != null"
+                                    th:each="auth : ${authors}"
+                                    th:selected="${auth.getName() !=null && auth.getId()== book.getAuthor().getId()}"
+
+                                    th:value="${auth.getId()}"
+                                    th:text="${auth.fullName()}">
+                            </option>
+                            <option th:if="${book} == null"
+                                    th:each="auth : ${authors}"
+                                    th:value="${auth.getId()}"
+                                    th:text="${auth.fullName()}">
+                            </option>
+                        </select>
+                        <a type="button" class="btn btn-primary mt-3" href="/authors/add-form">Add new Author</a>
+                    </div>
+                    <div class="form-group">
+                        <label for="fileImage">Photo</label>
+                        <input type="file"
+                               class="form-control"
+                               id="fileImage"
+                               name="photo"
+                               accept="image/png, image/jpeg"/>
+                    </div>
+                    <div class="form-group">
+                        <img id="thumbnail" alt="Book Photo Preview">
+                    </div>
+
+                    <div class="form-group">
+
+                        <div class="form-group">
+                            <label for="description">Description</label>
+                            <div class="md-form">
+                                <i class="fas fa-pencil-alt prefix"></i>
+                                <textarea id="description" name="description" class="md-textarea form-control" rows="3"
+                                          th:text="(${book}!=null ? ${book.getDescription()} : '')"></textarea>
+                            </div>
+
+                        </div>
+
+                    </div>
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                    <a type="button" class="btn btn-primary" href="/books">Back</a>
+                    <!-- <input type="hidden" th:value="${book.getId()}"/><!-->
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("#fileImage").change(function () {
+                showImageThumbnail(this)
+            });
+        })
+
+        function showImageThumbnail(fileInput) {
+            file = fileInput.files[0];
+            reader = new FileReader()
+            reader.onload = function (e) {
+                $('#thumbnail').attr('src', e.target.result);
+            };
+
+            reader.readAsDataURL(file);
+        }
+    </script>
+
+</th:block>

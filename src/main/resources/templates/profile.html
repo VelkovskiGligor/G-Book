@@ -1,0 +1,92 @@
+<th:block xmlns:th="http://www.thymeleaf.org">
+    <section class="jumbotron text-center">
+        <div class="container">
+            <h1 class="jumbotron-heading">G-Book SHOP</h1>
+            <h3 class="jumbotron-heading">Your Profile</h3>
+        </div>
+    </section>
+
+    <div class="container">
+        <div class="main-body">
+
+
+            <div class="row gutters-sm">
+                <div class="col-md-4 mb-3">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="d-flex flex-column align-items-center text-center">
+                                <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="Admin"
+                                     class="rounded-circle" width="150">
+                                <div class="mt-3">
+                                    <h4 th:text="${user.getName()} +' '+${user.getSurname()}"></h4>
+                                    <p class="text-secondary mb-1">User</p>
+                                    <p class="text-muted font-size-sm" th:text="${user.getAddress()}"></p>
+                                    <div class="col-sm-12">
+                                        <a class="btn btn-info " target="__blank" href="/profile/edit">Edit</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="col-md-8">
+                    <div class="card mb-3">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-sm-3">
+                                    <h6 class="mb-0">User name</h6>
+                                </div>
+                                <div class="col-sm-9 text-secondary" th:text="${user.getUsername()}">
+
+                                </div>
+                            </div>
+                            <hr>
+                            <div class="row">
+                                <div class="col-sm-3">
+                                    <h6 class="mb-0">Name</h6>
+                                </div>
+                                <div class="col-sm-9 text-secondary" th:text="${user.getName()}">
+
+                                </div>
+                            </div>
+                            <hr>
+                            <div class="row">
+                                <div class="col-sm-3">
+                                    <h6 class="mb-0">Surname</h6>
+                                </div>
+                                <div class="col-sm-9 text-secondary" th:text="${user.getSurname()}">
+
+                                </div>
+                            </div>
+                            <hr>
+                            <div class="row">
+                                <div class="col-sm-3">
+                                    <h6 class="mb-0">Number</h6>
+                                </div>
+                                <div class="col-sm-9 text-secondary" th:text="${user.getNumber()}">
+
+                                </div>
+                            </div>
+                            <hr>
+                            <div class="row">
+                                <div class="col-sm-3">
+                                    <h6 class="mb-0">Address</h6>
+                                </div>
+                                <div class="col-sm-9 text-secondary" th:text="${user.getAddress()}">
+
+                                </div>
+                            </div>
+                            <hr>
+
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</th:block>

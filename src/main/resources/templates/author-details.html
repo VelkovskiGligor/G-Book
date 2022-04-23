@@ -1,0 +1,48 @@
+<th:block xmlns:th="http://www.thymeleaf.org">
+    <section class="jumbotron text-center">
+        <div class="container">
+            <h1 class="jumbotron-heading">G-Book SHOP</h1>
+            <h3 class="jumbotron-heading">All products</h3>
+        </div>
+    </section>
+
+
+    <div class="container-fluid mb-4 " style="width: 100% ">
+
+        <div class="container mt-5 mb-5">
+            <div class="d-flex justify-content-center ">
+                <div class="col-5 ml-5">
+                    <img class="img-fluid img-responsive rounded product-image "
+                         th:src="@{${'/img/authors' + author.id + '/' + author.authorPhoto}}" height="100%"
+                         width="100%">
+
+                </div>
+                <div class="col-8">
+                    <h2 class="mt-1 mb-1 spec-1" style="text-align: center">
+                        <div th:text="${author.fullName()}"></div>
+                    </h2>
+                    <div class="mt-1 mb-1 spec-1"><strong>From: </strong>
+                        <div th:text="${author.getCountry()}"></div>
+                    </div>
+
+                    <div class="mt-1 mb-1 spec-1" style="width: 100%"><strong>About author: </strong>
+                        <p style="word-break: break-all" th:text="${author.getAboutActor()}"></p></div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    </div>
+    </div>
+    <div class="col mb-3" style="text-align: center">
+        <div class="row d-inline ">
+            <div class="col-sm-12 d-inline">
+                <a href="/authors" class="btn btn-lg btn-primary">Back</a>
+            </div>
+        </div>
+    </div>
+    </div>
+    </div>
+
+</th:block>
