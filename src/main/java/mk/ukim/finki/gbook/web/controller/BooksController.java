@@ -46,7 +46,7 @@ public class BooksController {
 
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/categories/{id}")
     public String getPageByCategory(@PathVariable Long id, Model model) {
         List<Book> books = this.booksService.findByCategory(id);
         List<Category> categories = this.categoryService.findAll();

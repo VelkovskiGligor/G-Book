@@ -69,7 +69,7 @@
             </a>
             <div th:each="category: ${categories}" class="d-inline ">
                 <a class="btn text-white m-2 buttonCategories" style="background-color: cadetblue"
-                   th:href="@{'/books/{id}' (id=${category.getId()})}">
+                   th:href="@{'/books/categories/{id}' (id=${category.getId()})}">
                     <th:block th:text="${category.getCategoryName()}"></th:block>
                 </a>
             </div>
