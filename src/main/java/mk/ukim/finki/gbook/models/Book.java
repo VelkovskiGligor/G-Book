@@ -34,6 +34,9 @@ public class Book {
     @Column(length = 50)
     private String photo;
 
+    private Double rate;
+    private Integer numRate;
+
     private Boolean deleted=false;
 
 
@@ -50,6 +53,9 @@ public class Book {
         this.language = language;
         this.photo=photo;
         this.deleted=false;
+        this.numRate=0;
+        this.rate=0.0;
+
 
     }
 }
