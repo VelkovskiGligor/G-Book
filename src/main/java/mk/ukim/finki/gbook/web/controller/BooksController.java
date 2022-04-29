@@ -6,6 +6,8 @@ import mk.ukim.finki.gbook.models.Category;
 import mk.ukim.finki.gbook.service.AuthorService;
 import mk.ukim.finki.gbook.service.BooksService;
 import mk.ukim.finki.gbook.service.CategoryService;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -131,5 +133,15 @@ public class BooksController {
         return "master-template";
 
     }
+    @PostMapping("/rating/{id}")
+    public String booksRating(@PathVariable Long id,@RequestParam Double rating,Model model){
+        Book book=this.booksService.findById(id).get();
+        //model.addAttribute("bodyContent","book-details");
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String username=authentication.getName();
+        this.booksService.rate(id,username,rating);
+        return "redirect:/books/details/"+id+"?hasRating=true";
+    }
+
 
 }

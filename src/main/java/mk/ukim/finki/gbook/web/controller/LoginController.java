@@ -30,8 +30,8 @@ public class LoginController {
             model.addAttribute("hasSuccessful",true);
             model.addAttribute("successful","Your login was successful.");
         }
-
-        return "/login";
+        model.addAttribute("bodyContent","login");
+        return "master-template";
     }
     @PostMapping
     public String login(HttpServletRequest request, Model model){

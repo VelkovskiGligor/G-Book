@@ -34,6 +34,7 @@ public class User implements UserDetails {
     private List<ShoppingCart> carts;
 
 
+
     private boolean isAccountNonExpired = true;
     private boolean isAccountNonLocked = true;
     private boolean isCredentialsNonExpired = true;

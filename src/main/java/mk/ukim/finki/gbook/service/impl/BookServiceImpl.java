@@ -1,16 +1,14 @@
 package mk.ukim.finki.gbook.service.impl;
 
-import mk.ukim.finki.gbook.models.Author;
-import mk.ukim.finki.gbook.models.Book;
-import mk.ukim.finki.gbook.models.Category;
+import mk.ukim.finki.gbook.models.*;
 import mk.ukim.finki.gbook.models.exception.AuthorNotFoundException;
 import mk.ukim.finki.gbook.models.exception.BookNotFoundException;
+import mk.ukim.finki.gbook.models.exception.BookRatingNotFoundException;
 import mk.ukim.finki.gbook.models.exception.CategoryNotFoundException;
-import mk.ukim.finki.gbook.repository.jpa.AuthorRepository;
-import mk.ukim.finki.gbook.repository.jpa.BooksRepository;
-import mk.ukim.finki.gbook.repository.jpa.CategoryRepository;
+import mk.ukim.finki.gbook.repository.jpa.*;
 import mk.ukim.finki.gbook.service.BooksService;
 import mk.ukim.finki.gbook.web.controller.FileUploadUtil;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 import org.springframework.web.multipart.MultipartFile;
@@ -22,14 +20,20 @@ import java.util.Optional;
 
 @Service
 public class BookServiceImpl implements BooksService {
+
     private final BooksRepository booksRepository;
     private final AuthorRepository authorRepository;
     private final CategoryRepository categoryRepository;
+    private final UserRepository userRepository;
+    private final BookRatingRepository bookRatingRepository;
 
-    public BookServiceImpl(BooksRepository booksRepository, AuthorRepository authorRepository, CategoryRepository categoryRepository) {
+    public BookServiceImpl(BooksRepository booksRepository, AuthorRepository authorRepository, CategoryRepository categoryRepository, UserRepository userRepository, BookRatingRepository bookRatingRepository) {
         this.booksRepository = booksRepository;
         this.authorRepository = authorRepository;
         this.categoryRepository = categoryRepository;
+        this.userRepository = userRepository;
+        this.bookRatingRepository = bookRatingRepository;
+
     }
 
     @Override
@@ -107,4 +111,34 @@ public class BookServiceImpl implements BooksService {
       this.booksRepository.save(book);
 
     }
+
+    @Override
+    public void rate(Long bookId, String username, Double rate) {
+        User user=this.userRepository.findByUsername(username)
+                .orElseThrow(()-> new UsernameNotFoundException(username));
+        Book book=this.booksRepository.findById(bookId)
+                .orElseThrow(()->new BookNotFoundException(bookId));
+        if(bookRatingRepository.findByUserAndAndBook(user,book).isPresent()){
+            BookRating bookRating= this.bookRatingRepository.findByUserAndAndBook(user,book)
+                    .orElseThrow(()->new BookRatingNotFoundException(username,bookId));
+            Double oldRate=bookRating.getRate();
+           // Integer numRating=book.getNumRate();
+            book.setRate((book.getRate()-oldRate+rate));
+            bookRating.setRate(rate);
+            this.bookRatingRepository.save(bookRating);
+            this.booksRepository.save(book);
+
+        }else{
+          //  BookRating bookRating=
+            this.bookRatingRepository.save(new BookRating(user,book,rate));
+            Integer numRating=book.getNumRate();
+            book.setNumRate(numRating+1);
+            book.setRate((book.getRate()+rate));
+            this.booksRepository.save(book);
+
+        }
+
+
+    }
+
 }

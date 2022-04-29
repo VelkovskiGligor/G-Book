@@ -53,8 +53,8 @@ public class Book {
         this.language = language;
         this.photo=photo;
         this.deleted=false;
-        this.numRate=0;
-        this.rate=0.0;
+        this.numRate=1;
+        this.rate=3.0;
 
 
     }

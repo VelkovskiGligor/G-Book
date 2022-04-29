@@ -87,47 +87,18 @@
                             <a  th:href="@{'/books/details/{id}' (id=${book.getId()})}" style="text-decoration: none;color: black">
                             <h4 th:text="${book.getName()}"></h4>
                             </a>
-                            <div class="d-flex flex-row">
+                            <div class="d-flex flex-row click">
                                 <div class="ratings mr-2">
-                                    <i class="fa fa-star" th:if="${book.getRate()>=10}" style="color: gold"></i>
-                                    <i  class="fa fa-star-o" aria-hidden="true"  th:if="${book.getRate()<10}"></i>
-                                    <i class="fa fa-star" th:if="${book.getRate()>=20}" style="color: gold"></i>
-                                    <i  class="fa fa-star-o" aria-hidden="true"  th:if="${book.getRate()<20}"></i>
-                                    <i class="fa fa-star" th:if="${book.getRate()>=30}" style="color: gold"></i>
-                                    <i  class="fa fa-star-o" aria-hidden="true"  th:if="${book.getRate()<30}"></i>
-                                    <i class="fa fa-star" th:if="${book.getRate()>=40}" style="color: gold"></i>
-                                    <i  class="fa fa-star-o" aria-hidden="true"  th:if="${book.getRate()<40}"></i>
-                                    <i class="fa fa-star" th:if="${book.getRate()>=50}" style="color: gold"></i>
-                                    <i  class="fa fa-star-o" aria-hidden="true" th:if="${book.getRate()<50}"></i>
-                                    <script type="text/javascript">
-                                        $(document).ready(function () {
-                                            var dialog=$("#dialog").dialog({
-                                                autoOpen:false,
-                                                buttons:[{
-                                                    text:"Proceed",
-                                                    click:function () {
-                                                        var ime=$("#ime").val();
-                                                        var prezime=$("#prezime").val();
-                                                        if( ime== "" || prezime== ""){
-                                                            alert("Zadolzitelno vnesete ime i prezime")
-                                                        }else{
-                                                            $("#rezz").val(ime+" "+ prezime);
-                                                            dialog.dialog('close');
-                                                        }
-                                                    }
-                                                }]
-                                            });
-                                            $("#click").click(function () {
-                                                dialog.dialog('open');
-                                            })
-                                        })
-                                    </script>
-                                    <div id="dialog" title="Enter your date">
-                                        <label><span>Name</span><input type="text" id="ime"></label><br>
-                                        <label><span>Surname</span><input type="text" id="prezime"></label>
-
-                                    </div>
-
+                                    <i class="fa fa-star" th:if="${book.getRate()/book.getNumRate()>=1}" style="color: gold"></i>
+                                    <i class="fa fa-star-o" aria-hidden="true" th:if="${book.getRate()/book.getNumRate()<1}"></i>
+                                    <i class="fa fa-star" th:if="${book.getRate()/book.getNumRate()>=2}" style="color: gold"></i>
+                                    <i class="fa fa-star-o" aria-hidden="true" th:if="${book.getRate()/book.getNumRate()<2}"></i>
+                                    <i class="fa fa-star" th:if="${book.getRate()/book.getNumRate()>=3}" style="color: gold"></i>
+                                    <i class="fa fa-star-o" aria-hidden="true" th:if="${book.getRate()/book.getNumRate()<3}"></i>
+                                    <i class="fa fa-star" th:if="${book.getRate()/book.getNumRate()>=4}" style="color: gold"></i>
+                                    <i class="fa fa-star-o" aria-hidden="true" th:if="${book.getRate()/book.getNumRate()<4}"></i>
+                                    <i class="fa fa-star" th:if="${book.getRate()/book.getNumRate()>=5}" style="color: gold"></i>
+                                    <i class="fa fa-star-o" aria-hidden="true" th:if="${book.getRate()/book.getNumRate()<5}"></i>
 
 
                                 </div>

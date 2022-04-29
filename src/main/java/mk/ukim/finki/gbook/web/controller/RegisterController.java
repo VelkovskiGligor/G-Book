@@ -34,8 +34,8 @@ public class RegisterController {
             model.addAttribute("hasErrorRequired", true);
             model.addAttribute("errorRequired", errorRequired);
         }
-
-        return "register";
+        model.addAttribute("bodyContent","register");
+        return "master-template";
     }
 
     @PostMapping

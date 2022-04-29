@@ -1,16 +1,6 @@
-<!DOCTYPE html>
-<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
-</head>
-<body>
-
-<section class="vh-100" style="background-color:cadetblue;">
+<th:block xmlns:th="http://www.thymeleaf.org">
+<section class="" style="background-color:cadetblue;">
     <div class="container py-5 h-100">
         <div class="row d-flex justify-content-center align-items-center h-100">
             <div class="col col-xl-10">
@@ -29,8 +19,8 @@
                                 <form action="/login" method="post">
 
                                     <div class="d-flex align-items-center mb-3 pb-1">
-                                        <i class="fas fa-cubes fa-2x me-3" style="color: #ff6219;"></i>
-                                        <span class="h1 fw-bold mb-0">G-Book</span>
+
+                                        <span class="h1 fw-bold mb-0"><i class="fa-solid fa-book-open" ></i>G-Book</span>
                                     </div>
 
                                     <h5 class="fw-normal mb-3 pb-3" style="letter-spacing: 1px;">Sign into your account</h5>
@@ -66,5 +56,4 @@
         </div>
     </div>
 </section>
-</body>
-</html>
+</th:block>

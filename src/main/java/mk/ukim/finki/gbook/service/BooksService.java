@@ -14,5 +14,6 @@ public interface BooksService {
     void deleteById(Long id);
     List<Book> findByCategory(Long id);
     List<Book> findByName(String name);
+    void rate(Long bookId,String username,Double rate);
     Optional<Book> edit(Long id,String name, Integer quantity, Long categoryId, Long authorId, String  language, Double price, String description, MultipartFile mainMultipartFile) throws IOException;
 }
