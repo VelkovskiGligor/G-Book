@@ -83,7 +83,7 @@
                 <a href="/books" class="btn btn-lg btn-danger">Back</a>
             </div>
             <div class="col-sm-12  d-inline ">
-                <a th:href="@{'/shopping-cart/add-book/{id}' (id=${book.getId()})}" class="btn btn-lg btn-primary">Add
+                <a th:href="@{'/shopping-cart/add-book/{id}' (id=${book.getId()})}"  sec:authorize="isAuthenticated()" class="btn btn-lg btn-primary">Add
                     to
                     wishlist</a>
             </div>
